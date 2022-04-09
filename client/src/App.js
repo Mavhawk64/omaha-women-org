@@ -9,7 +9,8 @@ import Events from "./routes/events";
 import LoginContainer from "./routes/loginContainer";
 import RegistrationContainer from "./routes/registrationContainer";
 
-import "./Styles/index.css"
+import "./Styles/index.css";
+import "./Styles/bootstrap.css";
 
 export default function App() {
   return (
