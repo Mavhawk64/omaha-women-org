@@ -1,20 +1,40 @@
-import express from 'express';
- 
+
+const express = require('express');
+const config = require('./config/dbConfig');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const eventsRouter = require('./routes/events')
+
+// dependencies 
 const app = express();
-const path = require('path')
-// Use your dependencies here
-// use all controllers(APIs) here
+const cors = require('cors');
+const mysql = require('mysql2');
 
-app.use(express.static('view'))
+// middleware
+app.use(express.static('view'));
+app.use(cors());
+app.use(express.json());
 
-app.get('/api', (req, res) => {
-   res.status(200).json({
-      status: 'Server Run successfully'
-   })
-});
+// create mysql connection
+const db = mysql.createConnection(config)
+
+// connect to mysql
+db.connect(err =>{
+   if(err) {
+      throw err;
+   }
+   console.log('db connection established!');
+})
 
 
-// Start Server here
+
+// routes(APIs)
+app.use('/api', indexRouter);
+app.use('/api/events', eventsRouter);
+app.use('/api/users', usersRouter);
+
+
+// Start Server 
 app.listen(8080, () => {
    console.log('Server is running on port 8080!');
 });
