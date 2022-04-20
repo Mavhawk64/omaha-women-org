@@ -1,15 +1,14 @@
 import React, { memo } from 'react'
+import backgroundImg from "../Images/Background.jpg";
 
-import PropTypes from 'prop-types'
+import RegistrationForm from '../Components/RegistrationForm';
 
-function RegistrationContainer({}) {
+function RegistrationContainer() {
   return (
-    <div>registration page</div>
+    <div style={{ background: `url(${backgroundImg})`}}>
+      <RegistrationForm /> 
+    </div> 
   )
-}
-
-RegistrationContainer.propTypes = {
-   
 }
 
 export default memo(RegistrationContainer);
