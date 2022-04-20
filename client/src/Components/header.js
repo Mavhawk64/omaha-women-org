@@ -1,20 +1,25 @@
-import { Link } from "react-router-dom";
+import * as React from "react";
+import UserProfile from "./UserProfile";
 
-export default function Header() {
-  return (   
-        <nav className="navbar navbar-expand-lg navbar-dark bg-pink">
-            <div className="container"> 
-              <div className="navbar-brand">International Women's Club</div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li className="nav-item"><Link to="/events" className="nav-link">Events</Link> </li>
-                    <li className="nav-item"><Link to="/register" className="nav-link">Register</Link></li>
-                    <li className="nav-item"><Link to="/login" className="nav-link">Signin</Link> </li>
-                    <li className="nav-item"><Link to="/home" defaultChecked className="nav-link">Home</Link> </li>
-                  </ul>
-              </div>
-            </div>
-        </nav>
+export default function Header({ user, children, handleLogout }) {
+  const [showMenu, toggleMenu] = React.useState(false);
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-pink">
+      <div className="container">
+        <div className="navbar-brand">International Women's Club</div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => toggleMenu(!showMenu)}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className={`collapse navbar-collapse ${showMenu ? "show" : ""}`}>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">{children}</ul>
+        </div>
+        <div>{user && <UserProfile userInfo={user} handleLogout={handleLogout} />}</div>
+      </div>
+    </nav>
   );
 }
