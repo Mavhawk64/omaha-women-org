@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import Footer from "./Components/footer";
 import Header from "./Components/header";
 import Events from "./routes/events";
@@ -9,21 +9,27 @@ import "./Styles/index.css";
 import "./Styles/bootstrap.css";
 import LoginPage from "./Components/loginForm";
 import Home from "./routes/Home";
+import useSessionStorage from "./hooks/useSessionStorage";
 
 export default function App() {
-  const [isAuthenticated, toggleAuthenticationFlag] = React.useState(false);
-  const [user, setUser] = React.useState({
-    User_First: "Gopinath",
-    User_Last: "Gangisetti",
-  });
+  const [isAuthenticated, toggleAuthenticationFlag] = useSessionStorage(false);
+  const [user, setUser] = useSessionStorage(null);
+ 
+
+  const handleLogout = e => {
+    e.preventDefault();
+    toggleAuthenticationFlag(false);
+    setUser(null);
+    window.location = window.location.origin + '/login';
+  }
 
   if (isAuthenticated && user) {
     return (
       <div className="app-container">
         <BrowserRouter>
-          <Header user={user}>
+          <Header user={user} handleLogout={handleLogout}>
             <li className="nav-item">
-              <Link to="/home" defaultChecked className="nav-link">
+              <Link to="/home" className="nav-link">
                 Home
               </Link>
             </li>
@@ -34,6 +40,7 @@ export default function App() {
             </li>
           </Header>
           <Routes>
+            <Route path="home" element={<Home />} />
             <Route path="events" element={<Events />} />
             <Route path="dashboard" element={<AdminDashboard />} />
           </Routes>
@@ -69,9 +76,18 @@ export default function App() {
           </li>
         </Header>
         <Routes>
+          <Route path="/" element={<Navigate replace to="/login" />} />
           <Route path="home" element={<Home />} />
           <Route path="events" element={<Events />} />
-          <Route path="login" element={<LoginPage toggleAuthenticationFlag={toggleAuthenticationFlag} setUser={setUser}/>} />
+          <Route
+            path="login"
+            element={
+              <LoginPage
+                toggleAuthenticationFlag={toggleAuthenticationFlag}
+                setUser={setUser}
+              />
+            }
+          />
           <Route path="register" element={<RegistrationContainer />} />
         </Routes>
         <Footer />

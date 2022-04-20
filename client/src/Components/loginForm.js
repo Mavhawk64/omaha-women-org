@@ -8,6 +8,7 @@ function LoginPage({ toggleAuthenticationFlag, setUser }) {
     email: "",
     password: "",
   });
+  const [error, setError] = React.useState(null);
   const navigate = useNavigate();
 
   const { email, password } = data;
@@ -31,16 +32,19 @@ function LoginPage({ toggleAuthenticationFlag, setUser }) {
         if (res.message === "Success") {
           toggleAuthenticationFlag(true);
           setUser(res.data);
-          navigate("/events");
+          navigate("/home");
+        }
+        else{
+          setError('Invalid email or password!')
         }
       })
       .catch((err) => {
-        console.log(err);
+        setError('Internal server error!')
       });
   };
 
   return (
-    <div style={{ background: `url(${backgroundImg})`, height:'80vh'}}>
+    <div style={{ background: `url(${backgroundImg})`, height: "80vh" }}>
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-10 col-md-7 col-lg-5">
@@ -85,6 +89,11 @@ function LoginPage({ toggleAuthenticationFlag, setUser }) {
                     />
                   </div>
                 </form>
+                {
+                  <div className="error-message d-flex justify-content-center">
+                    {error}
+                  </div>
+                }
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import userIcon from "../Images/user.png";
 
-export default function UserProfile({ userInfo }) {
+export default function UserProfile({ userInfo, handleLogout }) {
   const [showUser, toggleUser] = React.useState(false);
   const wrapperRef = React.useRef(null);
 
@@ -48,7 +48,7 @@ export default function UserProfile({ userInfo }) {
             <h5 classNAme="card-title h4">{userInfo.User_Email}</h5>
             <hr />
             <div className="d-flex justify-content-center">
-              <button className="btn bg-pink btn-block btn-sm">Log out</button>
+              <button className="btn bg-pink btn-block btn-sm" onClick={handleLogout}>Log out</button>
             </div>
           </div>
         </div>
