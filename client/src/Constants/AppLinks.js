@@ -1,5 +1,5 @@
-export const apiURL = 'http://ec2-18-224-229-247.us-east-2.compute.amazonaws.com:3100/api';
-//export const apiURL = 'http://localhost:8080/api';
+// export const apiURL = 'http://ec2-18-224-229-247.us-east-2.compute.amazonaws.com:3100/api';
+export const apiURL = 'http://localhost:3100/api';
 
 /*
     User related URLS  

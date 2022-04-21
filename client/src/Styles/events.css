@@ -1,0 +1,10 @@
+
+.event-card{
+    flex: 1 2 1;
+    min-width: 15%;
+}
+
+.today-btn{
+    background: aliceblue;
+    border: 1px solid black;
+}
