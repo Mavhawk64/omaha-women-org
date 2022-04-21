@@ -35,7 +35,7 @@ export default function Event({ event }) {
       </div>
       <div className="event-card">
         <div classname="card">
-          <img src="https://picsum.photos/180" />
+          <img src="https://picsum.photos/220/200" />
         </div>
       </div>
     </div>
