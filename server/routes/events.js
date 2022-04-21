@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-   req.db.query("SELECT * FROM Events", function (err, result, fields) {
+   req.db.query("SELECT * FROM Events", function (err, result) {
+      console.log(result);
       if (err)  res.status(500);
       res.status(200).json({"events":result});
     });
