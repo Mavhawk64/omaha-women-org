@@ -68,7 +68,7 @@ export default function RegistrationForm() {
             <div className="card" style={{ borderRadius: "15px" }}>
               <div className="card-body p-5">
                 <h3 className="text-uppercase text-center mb-3">
-                  Create an account
+                  Become a Member
                 </h3>
 
                 <form onSubmit={submitHandler}>
@@ -116,7 +116,7 @@ export default function RegistrationForm() {
                       onChange={changeHandler}
                     />
                     <label className="form-label" htmlFor="phone">
-                      Phone (e.g: 123-456-4444)
+                      Phone Number (e.g: 402-123-4321)
                     </label>
                   </div>
 
@@ -128,11 +128,11 @@ export default function RegistrationForm() {
                       name="address"
                       value={address}
                       required
-                      placeholder=" Enter your Address"
+                      placeholder=" Enter your Home Address"
                       onChange={changeHandler}
                     />
                     <label className="form-label" htmlFor="address">
-                      Address*
+                      Home Address*
                     </label>
                   </div>
 
@@ -182,7 +182,7 @@ export default function RegistrationForm() {
                       minLength={8}
                     />
                     <label className="form-label" htmlFor="password2">
-                      Confirm your password*
+                      Confirm your Password*
                     </label>
                   </div>
 
@@ -200,7 +200,7 @@ export default function RegistrationForm() {
                   <p className="text-center text-muted mt-5 mb-0">
                     Already have an account?
                     <Link to="/login" className="fw-bold text-body">
-                      <u>Login here</u>
+                      <u>Log in Here</u>
                     </Link>
                   </p>
                 </form>

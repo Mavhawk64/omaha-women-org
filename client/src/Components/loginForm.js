@@ -59,7 +59,7 @@ function LoginPage({ toggleAuthenticationFlag, setUser }) {
                       className="form-control form-control-md"
                       value={email}
                       required
-                      placeholder=" Enter your email.."
+                      placeholder=" Email Address"
                       onChange={changeHandler}
                     />
                     <label className="form-label" htmlFor="form3Example1cg">
@@ -72,7 +72,7 @@ function LoginPage({ toggleAuthenticationFlag, setUser }) {
                       name="password"
                       className="form-control form-control-md"
                       value={password}
-                      placeholder=" Enter your password.."
+                      placeholder=" Password"
                       required
                       minLength={8}
                       onChange={changeHandler}
