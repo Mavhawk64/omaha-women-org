@@ -11,7 +11,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-  --bs-blue: #0d6efd;
+  --bs-blue: #334aff;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #f794b8;
@@ -236,16 +236,12 @@ sup {
 }
 
 a {
-  color: var(--bs-pink);
+  color: var(--bs-blue);
   text-decoration: underline;
 }
 a:hover {
-  color: #f35d94;
-}
-
-a:not([href]):not([class]), a:not([href]):not([class]):hover {
-  color: inherit;
-  text-decoration: none;
+  color: rgba(51,74,255, 0.8);
+  cursor: pointer;
 }
 
 pre,
@@ -11341,3 +11337,4 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
