@@ -32,7 +32,7 @@ function LoginPage({ toggleAuthenticationFlag, setUser }) {
         if (res.message === "Success") {
           toggleAuthenticationFlag(true);
           setUser(res.data);
-          navigate("/home");
+          navigate("/events");
         }
         else{
           setError('Invalid email or password!')

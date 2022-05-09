@@ -16,7 +16,7 @@ export default function Header({ user, children, handleLogout }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className={`collapse navbar-collapse ${showMenu ? "show" : ""}`}>
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">{children}</ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0" data-testid="navbar-children">{children}</ul>
         </div>
         <div>{user && <UserProfile userInfo={user} handleLogout={handleLogout} />}</div>
       </div>
