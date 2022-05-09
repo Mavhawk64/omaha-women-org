@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import userIcon from "../Images/user.png";
 
 export default function UserProfile({ userInfo, handleLogout }) {
@@ -47,6 +48,7 @@ export default function UserProfile({ userInfo, handleLogout }) {
             <div className="small text-muted">{`${userInfo.User_First} ${userInfo.User_Last}`}</div>
             <h5 classNAme="card-title h4">{userInfo.User_Email}</h5>
             <hr />
+            <div><Link to="/events" state={{ userId: userInfo.User_Id }}>My Schedule</Link></div>
             <div className="d-flex justify-content-center">
               <button className="btn bg-pink btn-block btn-sm" onClick={handleLogout}>Log out</button>
             </div>

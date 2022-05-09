@@ -186,13 +186,13 @@ export default function RegistrationForm() {
                     </label>
                   </div>
 
-                  <div className="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center" name="submit">
                     <button className="btn bg-pink btn-block btn-md">
                       Register
                     </button>
                   </div>
 
-                  {<div className="error-message d-flex justify-content-center">
+                  {<div className="error-message d-flex justify-content-center" name="error">
                       {error}
                     </div>
                   }

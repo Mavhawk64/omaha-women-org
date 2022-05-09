@@ -1,8 +1,12 @@
 import React from "react";
 import { formatAMPM, getDay, getDayName } from "../utils/DateHelpers";
 import "../Styles/events.css";
- 
+import { Link } from "react-router-dom";
+import useWindowDimensions from "../hooks/useWindowDimensions";
+
 export default function Event({ event }) {
+  const { width, height } = useWindowDimensions();
+
   if (!event) return null;
 
   const startDay = getDayName(event.Event_Start);
@@ -11,31 +15,35 @@ export default function Event({ event }) {
   const endDate = getDay(event.Event_END);
 
   return (
-    <div style={{display: "flex", margin: "10px"}}>
+    <div className="events-container">
       <div className="event-card">
         <div>{startDay}</div>
         <div>
-          <h3>{startDate}</h3>
+          <h5>{startDate}</h5>
         </div>
       </div>
       <div className="event-card">
         <div>
-          {`${startDay} ${startDate} ${formatAMPM(
+          {`${startDay} ${startDate} @ ${formatAMPM(
             event.Event_Start
-          )} - ${endDay} ${endDate} ${formatAMPM(event.Event_END)}`}
+          )} - ${endDay} ${endDate} @ ${formatAMPM(event.Event_END)}`}
         </div>
-        <div>
-          <h4>{event.Event_Title}</h4>
+        <div className="primary-text">
+          <h5>{event.Event_Title}</h5>
         </div>
-        <div>{event.Event_Location}</div>
+        <div className="secondary-text">
+          {event.Event_Location}
+        </div>
         <div>{event.Event_Description}</div>
         <div>
-          <a>RSVP now</a>
+          <Link to="registerEvent" state={{ event }}>
+            RSVP now
+          </Link>
         </div>
       </div>
       <div className="event-card">
-        <div classname="card">
-          <img src="https://picsum.photos/220/200" />
+        <div>
+          <img src="https://picsum.photos/370/180" alt="event photo" />
         </div>
       </div>
     </div>

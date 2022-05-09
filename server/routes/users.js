@@ -2,22 +2,30 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
    try{
-      req.db.query(query, [values], function (err, result) {
+      const { id } = req.params;
+      const query = id ? `SELECT * FROM Users WHERE User_Id = ${id}`: 'SELECT * FROM Users';
+      req.db.query(query, function (err, result) {
          if (err) throw err;
-         res.status(201).json({message: 'Success'})
-         console.log("Number of records inserted: " + result.affectedRows);
+         res.status(200).json({users: result})
        });
    }
    catch(err){
       console.log(err);
+      res.status(500).send()
    }
  });
 
  router.post('/register', async (req, res) => {
    try {
-     console.log(req.body, 'payload')
+    const { email} = req.body;
+    req.db.query(`Select * from Users WHERE User_Email = ${email}`, function (err, result) {
+      if (err) throw err;
+      if(result.length){
+        res.status(201).json({ message: "Already exists!" });
+      }
+    });
      const hashedPassword = await bcrypt.hash(req.body.password1, 10);
      const user = { ...req.body, password: hashedPassword };
      delete user['password1'];

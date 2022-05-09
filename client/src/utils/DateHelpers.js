@@ -20,3 +20,19 @@ export function formatAMPM(dateStr) {
     return strTime;
   }
 
+  export function diff_hours(dt2, dt1) 
+  {
+ 
+   let diff =(dt2.getTime() - dt1.getTime()) / 1000;
+   diff /= (60 * 60);
+   return Math.abs(Math.round(diff));
+   
+  }
+
+  export function formatToCalendarDate(dt){
+     const date = new Date(dt).toISOString();
+      return date.replace(/(?!\w|\s)./g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+    }
+
